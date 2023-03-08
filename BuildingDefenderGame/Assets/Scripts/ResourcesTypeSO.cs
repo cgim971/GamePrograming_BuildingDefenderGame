@@ -4,5 +4,6 @@ using UnityEngine;
 
 [CreateAssetMenu(menuName = "ScriptableObjects/ResourcesType")]
 public class ResourcesTypeSO : ScriptableObject {
-   public string nameString;
+    public string nameString;
+    public Sprite sprite;
 }

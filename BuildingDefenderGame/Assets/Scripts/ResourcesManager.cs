@@ -1,12 +1,12 @@
-using Mono.Cecil;
-using System.Collections;
+using System;
 using System.Collections.Generic;
-using System.Runtime.Versioning;
 using UnityEngine;
 
 public class ResourcesManager : MonoBehaviour {
 
     public static ResourcesManager Instance { get; private set; }
+
+    public event EventHandler OnResourceAmountChanged;
 
     private Dictionary<ResourcesTypeSO, int> resourceAmountDictionary;
     private ResourcesTypeListSO resourceTypeList;
@@ -21,6 +21,7 @@ public class ResourcesManager : MonoBehaviour {
             resourceAmountDictionary[resourcesType] = 0;
         }
     }
+
     public void Update() {
         if (Input.GetKeyDown(KeyCode.Q)) {
             AddResource(resourceTypeList.resourcesTypeList[0], 1);
@@ -31,9 +32,27 @@ public class ResourcesManager : MonoBehaviour {
         else if (Input.GetKeyDown(KeyCode.E)) {
             AddResource(resourceTypeList.resourcesTypeList[2], 1);
         }
+
     }
 
     public void AddResource(ResourcesTypeSO resourceType, int count) {
         resourceAmountDictionary[resourceType] += count;
+
+        OnResourceAmountChanged?.Invoke(this, EventArgs.Empty);
+    }
+
+
+    public void SubResource(ResourcesTypeSO resourceType, int count) {
+        resourceAmountDictionary[resourceType] -= count;
+    }
+
+    private void Test() {
+        Debug.Log("나무 : " + resourceAmountDictionary[resourceTypeList.resourcesTypeList[0]]);
+        Debug.Log("돌 : " + resourceAmountDictionary[resourceTypeList.resourcesTypeList[1]]);
+        Debug.Log("금 : " + resourceAmountDictionary[resourceTypeList.resourcesTypeList[2]]);
+    }
+
+    public int GetResourceAmount(ResourcesTypeSO resourceType) {
+        return resourceAmountDictionary[resourceType];
     }
 }

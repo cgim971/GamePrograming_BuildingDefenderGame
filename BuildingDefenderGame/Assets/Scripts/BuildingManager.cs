@@ -4,6 +4,7 @@ using UnityEngine;
 public class BuildingManager : MonoBehaviour {
 
     private BuildingTypeListSO buildingTypeList;
+    private int buildingIndex= 0;
 
     private void Start() {
         buildingTypeList = Resources.Load<BuildingTypeListSO>("ScriptableObject/List/BuildingTypeList");
@@ -19,6 +20,7 @@ public class BuildingManager : MonoBehaviour {
         else if (Input.GetKeyDown(KeyCode.E)) {
             CreateHarvester(buildingTypeList.buildingTypeList[2].prefab);
         }
+
     }
 
     void CreateHarvester(Transform ts) {
