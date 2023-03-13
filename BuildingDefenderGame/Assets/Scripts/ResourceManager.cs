@@ -2,9 +2,9 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ResourcesManager : MonoBehaviour {
+public class ResourceManager : MonoBehaviour {
 
-    public static ResourcesManager Instance { get; private set; }
+    public static ResourceManager Instance { get; private set; }
 
     public event EventHandler OnResourceAmountChanged;
 
@@ -23,15 +23,6 @@ public class ResourcesManager : MonoBehaviour {
     }
 
     public void Update() {
-        if (Input.GetKeyDown(KeyCode.Q)) {
-            AddResource(resourceTypeList.resourcesTypeList[0], 1);
-        }
-        else if (Input.GetKeyDown(KeyCode.W)) {
-            AddResource(resourceTypeList.resourcesTypeList[1], 1);
-        }
-        else if (Input.GetKeyDown(KeyCode.E)) {
-            AddResource(resourceTypeList.resourcesTypeList[2], 1);
-        }
 
     }
 
